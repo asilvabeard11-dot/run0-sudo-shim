@@ -111,11 +111,16 @@ pub fn parse_to_run0_cli(
         return Err(Error::Unsupported(String::from("--chroot")));
     }
 
+    //systemd  v262 and higher should support this
+    //ignoring for testing purposes
     if cli.remove_timestamp || cli.reset_timestamp {
+
         // potential solution: call RevokeTemporaryAuthorizations on org.freedesktop.PolicyKit1.Authority dbus
-        return Err(Error::Unsupported(String::from(
-            "removing or resetting authentication timestamps",
-        )));
+        //TODO is systemd version is < 262 execute otherwise ignore
+        //return Err(Error::Unsupported(String::from(
+        //    "removing or resetting authentication timestamps",
+        //)));
+
     }
 
     if cli.host.is_some() {
