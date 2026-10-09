@@ -43,6 +43,8 @@ fn main() {
         .into_iter();
 
     let program = cli.next().unwrap_or_else(|| die("unable to construct cli"));
+    dbg!("debug: program: {} cli: {}", &program, &cli);
+    // println!("debug: program: {} cli: {:?}", program.to_string(), cli);
 
     let error = Command::new(program).args(cli).exec();
 
